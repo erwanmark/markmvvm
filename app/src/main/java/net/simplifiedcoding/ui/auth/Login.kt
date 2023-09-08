@@ -25,7 +25,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import net.simplifiedcoding.R
 import net.simplifiedcoding.data.Resource
-import net.simplifiedcoding.navigation.ROUTE_ADD
+import net.simplifiedcoding.navigation.ROUTE_ADDCOURSE
 import net.simplifiedcoding.navigation.ROUTE_HOME
 import net.simplifiedcoding.navigation.ROUTE_LOGIN
 import net.simplifiedcoding.navigation.ROUTE_SIGNUP
@@ -133,7 +133,7 @@ fun LoginScreen(viewModel: AuthViewModel?, navController: NavController) {
 //                        popUpTo(ROUTE_LOGIN) { inclusive = true }
 //                    }
 //                },
-//            text = stringResource(id = R.string.dont_have_account),
+//            text = stringResource(id = R.string.don't_have_account),
 //            style = MaterialTheme.typography.bodyLarge,
 //            textAlign = TextAlign.Center,
 //            color = MaterialTheme.colorScheme.onSurface
@@ -147,11 +147,11 @@ fun LoginScreen(viewModel: AuthViewModel?, navController: NavController) {
                     end.linkTo(parent.end, spacing.extraLarge)
                 }
                 .clickable {
-                    navController.navigate(ROUTE_ADD) {
+                    navController.navigate(ROUTE_ADDCOURSE) {
                         popUpTo(ROUTE_LOGIN) { inclusive = true }
                     }
                 },
-            text = "ADD DATA",
+            text = "ADD COURSE",
             style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onSurface
