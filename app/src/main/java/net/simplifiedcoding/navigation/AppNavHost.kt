@@ -21,7 +21,7 @@ fun AppNavHost(
     viewModel: AuthViewModel,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUTE_VIEWCOURSES
+    startDestination: String = ROUTE_SIGNUP
 ) {
     NavHost(
         modifier = modifier,
@@ -46,6 +46,9 @@ fun AppNavHost(
             viewcoursesScreen(viewModel, navController)
         }
 
+        composable(ROUTE_UPDATECOURSE) {
+            viewcoursesScreen(viewModel, navController)
+        }
 
 
 

@@ -8,5 +8,6 @@ data class Course(
     var courseName: String,
     var courseDuration: String,
     var courseDescription: String,
-    var courseAuthor: String
+    var courseAuthor: String,
+
 )

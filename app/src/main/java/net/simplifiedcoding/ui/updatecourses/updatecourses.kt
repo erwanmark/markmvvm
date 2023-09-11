@@ -1,4 +1,5 @@
-package net.simplifiedcoding.ui.add
+package net.simplifiedcoding.ui.updatecourses
+
 
 import androidx.navigation.NavController
 import net.simplifiedcoding.ui.auth.AuthViewModel
@@ -11,7 +12,6 @@ import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SmallTopAppBar
@@ -31,13 +31,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import net.simplifiedcoding.Course
+import net.simplifiedcoding.Courses
+import net.simplifiedcoding.ui.add.addDataToFirebase
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddScreen(viewModel: AuthViewModel?, navController: NavController){
+fun updatecourseScreen(viewModel: AuthViewModel?, navController: NavController){
 
     Surface(
         // on below line we are specifying modifier and color for our app
@@ -234,70 +235,64 @@ fun firebaseUI(context: Context) {
         // on below line creating button to
         // add data to firebase firestore database.
 
-                // on below line we are validating user input parameters.
-                if (TextUtils.isEmpty(courseName.value.toString())) {
-                    Toast.makeText(context, "Please enter course name", Toast.LENGTH_SHORT).show()
-                } else if (TextUtils.isEmpty(courseDuration.value.toString())) {
-                    Toast.makeText(context, "Please enter course Duration", Toast.LENGTH_SHORT)
-                        .show()
-                } else if (TextUtils.isEmpty(courseDescription.value.toString())) {
-                    Toast.makeText(context, "Please enter course description", Toast.LENGTH_SHORT)
-                        .show()
-                } else if (TextUtils.isEmpty(courseAuthor.value.toString())) {
-                        Toast.makeText(context, "Please enter course Author", Toast.LENGTH_SHORT)
-                            .show()
-                } else {
-                    // on below line adding data to
-                    // firebase firestore database.
-                    addDataToFirebase(
-                        courseName.value,
-                        courseDuration.value,
-                        courseDescription.value,
-                        courseAuthor.value, context
-
-                    )
-                }
-            }
-            // on below line we are
-            // adding modifier to our button.
-
-
+        // on below line we are validating user input parameters.
+        if (TextUtils.isEmpty(courseName.value.toString())) {
+            Toast.makeText(context, "Please enter course name", Toast.LENGTH_SHORT).show()
+        } else if (TextUtils.isEmpty(courseDuration.value.toString())) {
+            Toast.makeText(context, "Please enter course Duration", Toast.LENGTH_SHORT)
+                .show()
+        } else if (TextUtils.isEmpty(courseDescription.value.toString())) {
+            Toast.makeText(context, "Please enter course description", Toast.LENGTH_SHORT)
+                .show()
+        } else if (TextUtils.isEmpty(courseAuthor.value.toString())) {
+            Toast.makeText(context, "Please enter course Author", Toast.LENGTH_SHORT)
+                .show()
+        } else {
+            // on below line adding data to
+            // firebase firestore database.
+            updateToFirebase(
+                courseName.value,
+                courseDuration.value,
+                courseDescription.value,
+                courseAuthor.value,
+                context
+            )
+        }
     }
+}
+    // on below line we are
+    // adding modifier to our button.
 
 
-fun addDataToFirebase(
+fun updateToFirebase(
     courseName: String,
     courseDuration: String,
     courseDescription: String,
     courseAuthor: String,
+    courseId: Context,
     context: Context
 ) {
-    // on below line creating an instance of firebase firestore.
     val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-    //creating a collection reference for our Firebase Firestore database.
-    val dbCourses: CollectionReference = db.collection("Courses")
-    //adding our data to our courses object class.
-    val courses = Course(courseName, courseDescription, courseDuration, courseAuthor)
+    val dbCourses: CollectionReference = db.collection("Courses/$courseId")
 
-    //below method is use to add data to Firebase Firestore.
-    dbCourses.add(courses).addOnSuccessListener {
-        // after the data addition is successful
-        // we are displaying a success toast message.
-        Toast.makeText(
-            context,
-            "Your Course has been added to Firebase Firestore",
-            Toast.LENGTH_SHORT
-        ).show()
+// Create a map with updated data.
+    val updatedData = Courses(courseName, courseDescription, courseDuration, courseId)
 
-    }.addOnFailureListener { e ->
-        // this method is called when the data addition process is failed.
-        // displaying a toast message when data addition is failed.
-        Toast.makeText(context, "Fail to add course \n$e", Toast.LENGTH_SHORT).show()
-    }
-
+// Update the document with the specified courseId.
+    dbCourses.document(courseId.toString())
+        .update(updatedData)
+        .addOnSuccessListener {
+            Toast.makeText(
+                context,
+                "Course updated successfully",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        .addOnFailureListener { e ->
+            Toast.makeText(
+                context,
+                "Failed to update course: $e",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
 }
-
-
-
-
-

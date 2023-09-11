@@ -222,14 +222,7 @@ fun firebaseUI(context: Context, courseList: SnapshotStateList<Courses>) {
                             )
                         }
                         // adding spacer on below line.
-                        Spacer(modifier = Modifier.width(5.dp))
-                        Button(onClick = { },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(16.dp)
-                        ) {
-                            Text(text = "add data  ", modifier = Modifier.padding(8.dp))
-                        }
+
 
                         // on below line displaying text for course description
                         courseList[index]?.courseDescription?.let {

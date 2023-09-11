@@ -147,8 +147,8 @@ fun LoginScreen(viewModel: AuthViewModel?, navController: NavController) {
                     end.linkTo(parent.end, spacing.extraLarge)
                 }
                 .clickable {
-                    navController.navigate(ROUTE_ADDCOURSE) {
-                        popUpTo(ROUTE_LOGIN) { inclusive = true }
+                    navController.navigate(ROUTE_HOME) {
+                        popUpTo(ROUTE_HOME) { inclusive = true }
                     }
                 },
             text = "ADD COURSE",
