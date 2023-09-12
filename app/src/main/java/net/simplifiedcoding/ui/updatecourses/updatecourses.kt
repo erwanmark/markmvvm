@@ -24,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.modifier.modifierLocalOf
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -32,7 +33,6 @@ import androidx.compose.ui.unit.sp
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import net.simplifiedcoding.Courses
-import net.simplifiedcoding.ui.add.addDataToFirebase
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -247,20 +247,54 @@ fun firebaseUI(context: Context) {
         } else if (TextUtils.isEmpty(courseAuthor.value.toString())) {
             Toast.makeText(context, "Please enter course Author", Toast.LENGTH_SHORT)
                 .show()
-        } else {
-            // on below line adding data to
-            // firebase firestore database.
+        }  else {
+            // Print a debug message before calling updateToFirebase.
+            println("Calling updateToFirebase")
+
+            // Call the updateToFirebase function.
             updateToFirebase(
                 courseName.value,
                 courseDuration.value,
                 courseDescription.value,
-                courseAuthor.value,
-                context
+                courseAuthor.value
             )
         }
     }
 }
-    // on below line we are
+
+fun updateToFirebase(
+    courseName: String,
+    courseDuration: String,
+    courseDescription: String,
+    courseAuthor: String
+) {
+    // Print a debug message to check if this function is called.
+    println("updateToFirebase Called")
+
+    val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+    val dbCourses: CollectionReference = db.collection("Courses") // Remove $courseId here
+
+    // Create a map with updated data.
+    val updatedData = mapOf(
+        "courseName" to courseName,
+        "courseDescription" to courseDescription,
+        "courseDuration" to courseDuration,
+        "courseAuthor" to courseAuthor
+    )
+
+    // Print the updatedData for debugging.
+    println("Updated Data: $updatedData")
+
+    // Add your logic to update Firestore here
+    // Make sure to generate a unique document ID or use an existing one.
+
+    // Example:
+    // dbCourses.add(updatedData)
+    //   .addOnSuccessListener { /* Handle success */ }
+    //   .addOnFailureListener { e -> /* Handle failure */ }
+}
+
+// on below line we are
     // adding modifier to our button.
 
 
@@ -276,23 +310,21 @@ fun updateToFirebase(
     val dbCourses: CollectionReference = db.collection("Courses/$courseId")
 
 // Create a map with updated data.
-    val updatedData = Courses(courseName, courseDescription, courseDuration, courseId)
+    val updatedData = mapOf(
+        "courseName" to courseName,
+        "courseDescription" to courseDescription,
+        "courseDuration" to courseDuration,
+        "courseAuthor" to courseAuthor
+    )
 
-// Update the document with the specified courseId.
-    dbCourses.document(courseId.toString())
-        .update(updatedData)
-        .addOnSuccessListener {
-            Toast.makeText(
-                context,
-                "Course updated successfully",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-        .addOnFailureListener { e ->
-            Toast.makeText(
-                context,
-                "Failed to update course: $e",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+    // Print the updatedData for debugging.
+    println("Updated Data: $updatedData")
+
+    // Add your logic to update Firestore here
+    // Make sure to generate a unique document ID or use an existing one.
+
+    // Example:
+    // dbCourses.add(updatedData)
+    //   .addOnSuccessListener { /* Handle success */ }
+    //   .addOnFailureListener { e -> /* Handle failure */ }
 }
