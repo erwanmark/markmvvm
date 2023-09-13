@@ -186,13 +186,6 @@ fun SignupScreen(viewModel: AuthViewModel?, navController: NavHostController) {
     }
 }
 
-@Preview(showBackground = true, uiMode = UI_MODE_NIGHT_NO)
-@Composable
-fun SignupScreenPreviewLight() {
-    AppTheme {
-        SignupScreen(null, rememberNavController())
-    }
-}
 
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Composable

@@ -25,7 +25,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import net.simplifiedcoding.R
 import net.simplifiedcoding.data.Resource
-import net.simplifiedcoding.navigation.ROUTE_ADDCOURSE
+import net.simplifiedcoding.navigation.ROUTE_ADDMEDICAL
 import net.simplifiedcoding.navigation.ROUTE_HOME
 import net.simplifiedcoding.navigation.ROUTE_LOGIN
 import net.simplifiedcoding.navigation.ROUTE_SIGNUP
@@ -151,7 +151,7 @@ fun LoginScreen(viewModel: AuthViewModel?, navController: NavController) {
                         popUpTo(ROUTE_HOME) { inclusive = true }
                     }
                 },
-            text = "ADD COURSE",
+            text = "ADD ACCOUNT",
             style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onSurface
@@ -173,7 +173,7 @@ fun LoginScreen(viewModel: AuthViewModel?, navController: NavController) {
                 }
                 is Resource.Success -> {
                     LaunchedEffect(Unit) {
-                        navController.navigate(ROUTE_HOME) {
+                        navController.navigate(ROUTE_ADDMEDICAL) {
                             popUpTo(ROUTE_LOGIN) { inclusive = true }
                         }
                     }

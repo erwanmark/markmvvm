@@ -38,7 +38,7 @@ import net.simplifiedcoding.ui.auth.AuthViewModel
 @OptIn(ExperimentalMaterial3Api::class)
     @SuppressLint("UnrememberedMutableState", "UnusedMaterial3ScaffoldPaddingParameter")
     @Composable
-    fun CourseScreen( viewModel: AuthViewModel?, navController: NavController){
+    fun MedicalScreen( viewModel: AuthViewModel?, navController: NavController){
 
         Surface(
             // on below line we are specifying modifier and color for our app
@@ -75,13 +75,13 @@ import net.simplifiedcoding.ui.auth.AuthViewModel
                 }) {
 
                 // on below line creating variable for list of data.
-                var courseList = mutableStateListOf<Courses?>()
+                var medicalList = mutableStateListOf<Courses?>()
                 // on below line creating variable for freebase database
                 // and database reference.
                 var db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
                 // on below line getting data from our database
-                db.collection("Courses").get()
+                db.collection("Medical").get()
                     .addOnSuccessListener { queryDocumentSnapshots ->
                         // after getting the data we are calling
                         // on success method
@@ -99,7 +99,7 @@ import net.simplifiedcoding.ui.auth.AuthViewModel
                                 val c: Courses? = d.toObject(Courses::class.java)
                                 // and we will pass this object class inside
                                 // our arraylist which we have created for list view.
-                                courseList.add(c)
+                                medicalList.add(c)
 
                             }
                         } else {
@@ -123,7 +123,7 @@ import net.simplifiedcoding.ui.auth.AuthViewModel
 //                        ).show()
                     }
                 // on below line we are calling method to display UI
-                firebaseUI(LocalContext.current, courseList)
+                firebaseUI(LocalContext.current, medicalList)
             }
         }
     }
@@ -132,7 +132,7 @@ import net.simplifiedcoding.ui.auth.AuthViewModel
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun firebaseUI(context: Context, courseList: SnapshotStateList<Courses?>) {
+    fun firebaseUI(context: Context, medicalList: SnapshotStateList<Courses?>) {
 
         // on below line creating a column
         // to display our retrieved list.
@@ -153,7 +153,7 @@ import net.simplifiedcoding.ui.auth.AuthViewModel
             LazyColumn {
                 // on below line we are setting data
                 // for each item of our listview.
-                itemsIndexed(courseList) { index, item ->
+                itemsIndexed(medicalList) { index, item ->
                     // on below line we are creating
                     // a card for our list view item.
                     Card(
@@ -162,7 +162,7 @@ import net.simplifiedcoding.ui.auth.AuthViewModel
                             // displaying the toast message.
                             Toast.makeText(
                                 context,
-                                courseList[index]?.courseName + " selected..",
+                                medicalList[index]?.doctorsName + " selected..",
                                 Toast.LENGTH_SHORT
                             ).show()
                         },
@@ -187,7 +187,7 @@ import net.simplifiedcoding.ui.auth.AuthViewModel
                             // on below line inside row we are adding spacer
                             Spacer(modifier = Modifier.width(5.dp))
                             // on below line we are displaying course name.
-                            courseList[index]?.courseName?.let {
+                            medicalList[index]?.doctorsLocation?.let {
                                 Text(
                                     // inside the text on below line we are
                                     // setting text as the language name
@@ -211,7 +211,7 @@ import net.simplifiedcoding.ui.auth.AuthViewModel
                             Spacer(modifier = Modifier.height(5.dp))
 
                             // on below line displaying text for course duration
-                            courseList[index]?.courseDuration?.let {
+                            medicalList[index]?.doctorsSpecialisation?.let {
                                 Text(
                                     // inside the text on below line we are
                                     // setting text as the language name
@@ -235,7 +235,7 @@ import net.simplifiedcoding.ui.auth.AuthViewModel
                             Spacer(modifier = Modifier.width(5.dp))
 
                             // on below line displaying text for course description
-                            courseList[index]?.courseDescription?.let {
+                            medicalList[index]?.doctorsContacts?.let {
                                 Text(
                                     // inside the text on below line we are
                                     // setting text as the language name
@@ -256,7 +256,7 @@ import net.simplifiedcoding.ui.auth.AuthViewModel
                             Spacer(modifier = Modifier.width(5.dp))
 
                             // on below line displaying text for course description
-                            courseList[index]?.courseAuthor?.let {
+                            medicalList[index]?.consoltationCharges?.let {
                                 Text(
                                     // inside the text on below line we are
                                     // setting text as the language name

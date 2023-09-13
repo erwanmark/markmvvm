@@ -1,4 +1,4 @@
-package net.simplifiedcoding.viewcourse
+package net.simplifiedcoding.viewmedical
 
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
-import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
@@ -26,7 +25,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -34,16 +32,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.google.firebase.firestore.FirebaseFirestore
-import net.simplifiedcoding.R
-import net.simplifiedcoding.navigation.ROUTE_HOME
-import net.simplifiedcoding.navigation.ROUTE_LOGIN
 import net.simplifiedcoding.ui.auth.AuthViewModel
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "UnrememberedMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun viewcoursesScreen(viewModel: AuthViewModel?, navController: NavHostController) {
+fun viewmedicalScreen(viewModel: AuthViewModel?, navController: NavHostController) {
 
 
     Surface(
@@ -82,7 +77,7 @@ fun viewcoursesScreen(viewModel: AuthViewModel?, navController: NavHostControlle
 
 
             //logic for retrieving data
-            var courseList = mutableStateListOf<Courses>()
+            var medicalList = mutableStateListOf<Courses>()
 
             //create a variable for firestore database data
             var db: FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -99,7 +94,7 @@ fun viewcoursesScreen(viewModel: AuthViewModel?, navController: NavHostControlle
 
                             var c: Courses? = d.toObject(Courses::class.java)
                             if (c != null) {
-                                courseList.add(c)
+                                medicalList.add(c)
                             }
 
                         }
@@ -115,7 +110,7 @@ fun viewcoursesScreen(viewModel: AuthViewModel?, navController: NavHostControlle
                     //Toast.makeText(context, "", Toast.LENGTH_SHORT).show()
                 }
             //adding our user interface
-            firebaseUI(LocalContext.current, courseList)
+            firebaseUI(LocalContext.current, medicalList)
         }
     }
 }
@@ -152,7 +147,7 @@ fun firebaseUI(context: Context, courseList: SnapshotStateList<Courses>) {
                         // displaying the toast message.
                         Toast.makeText(
                             context,
-                            courseList[index]?.courseName + " selected..",
+                            courseList[index]?.doctorsName + " selected..",
                             Toast.LENGTH_SHORT
                         ).show()
                     },
@@ -177,7 +172,7 @@ fun firebaseUI(context: Context, courseList: SnapshotStateList<Courses>) {
                         // on below line inside row we are adding spacer
                         Spacer(modifier = Modifier.width(5.dp))
                         // on below line we are displaying course name.
-                        courseList[index]?.courseName?.let {
+                        courseList[index]?.doctorsName?.let {
                             Text(
                                 // inside the text on below line we are
                                 // setting text as the language name
@@ -201,7 +196,7 @@ fun firebaseUI(context: Context, courseList: SnapshotStateList<Courses>) {
                         Spacer(modifier = Modifier.height(5.dp))
 
                         // on below line displaying text for course duration
-                        courseList[index]?.courseDuration?.let {
+                        courseList[index]?.doctorsLocation?.let {
                             Text(
                                 // inside the text on below line we are
                                 // setting text as the language name
@@ -225,7 +220,7 @@ fun firebaseUI(context: Context, courseList: SnapshotStateList<Courses>) {
 
 
                         // on below line displaying text for course description
-                        courseList[index]?.courseDescription?.let {
+                        courseList[index]?.doctorsLocation?.let {
                             Text(
                                 // inside the text on below line we are
                                 // setting text as the language name

@@ -1,4 +1,4 @@
-package net.simplifiedcoding.ui.updatecourses
+package net.simplifiedcoding.ui.updatemedical
 
 
 import androidx.navigation.NavController
@@ -24,7 +24,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalOf
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -32,13 +31,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import net.simplifiedcoding.Courses
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun updatecourseScreen(viewModel: AuthViewModel?, navController: NavController){
+fun updatemedicalScreen(viewModel: AuthViewModel?, navController: NavController){
 
     Surface(
         // on below line we are specifying modifier and color for our app
@@ -85,18 +83,21 @@ fun firebaseUI(context: Context) {
 
     // on below line creating variable for course name,
     // course duration and course description.
-    val courseName = remember {
+    val doctorsName = remember {
         mutableStateOf("")
     }
 
-    val courseDuration = remember {
+    val doctorsLocation = remember {
         mutableStateOf("")
     }
 
-    val courseDescription = remember {
+    val doctorsSpecialisation = remember {
         mutableStateOf("")
     }
-    val courseAuthor = remember {
+    val doctorsContacts = remember {
+        mutableStateOf("")
+    }
+    val consoltationCharges = remember {
         mutableStateOf("")
     }
 
@@ -117,15 +118,15 @@ fun firebaseUI(context: Context) {
         TextField(
             // on below line we are specifying
             // value for our course name text field.
-            value = courseName.value,
+            value = doctorsName.value,
 
             // on below line we are adding on
             // value change for text field.
-            onValueChange = { courseName.value = it },
+            onValueChange = {  doctorsName.value = it },
 
             // on below line we are adding place holder
-            // as text as "Enter your course name"
-            placeholder = { Text(text = "Enter your course name") },
+            // as text as "Enter your name"
+            placeholder = { Text(text = "Enter your name") },
 
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
@@ -147,15 +148,15 @@ fun firebaseUI(context: Context) {
         TextField(
             // on below line we are specifying
             // value for our course duration text field.
-            value = courseDuration.value,
+            value = doctorsLocation.value,
 
             // on below line we are adding on
             // value change for text field.
-            onValueChange = { courseDuration.value = it },
+            onValueChange = { doctorsLocation.value = it },
 
             // on below line we are adding place holder
-            // as text as "Enter your course duration"
-            placeholder = { Text(text = "Enter your course duration") },
+            // as text as "Enter your location"
+            placeholder = { Text(text = "Enter your location") },
 
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
@@ -177,15 +178,15 @@ fun firebaseUI(context: Context) {
         TextField(
             // on below line we are specifying
             // value for our course description text field.
-            value = courseDescription.value,
+            value = doctorsSpecialisation.value,
 
             // on below line we are adding on
             // value change for text field.
-            onValueChange = { courseDescription.value = it },
+            onValueChange = { doctorsSpecialisation.value = it },
 
             // on below line we are adding place holder
-            // as text as "Enter your course description"
-            placeholder = { Text(text = "Enter your course description") },
+            // as text as "Enter your proffession"
+            placeholder = { Text(text = "Enter your specialisation") },
 
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
@@ -207,15 +208,44 @@ fun firebaseUI(context: Context) {
         TextField(
             // on below line we are specifying
             // value for our course description text field.
-            value = courseAuthor.value,
+            value = doctorsContacts.value,
 
             // on below line we are adding on
             // value change for text field.
-            onValueChange = { courseAuthor.value = it },
+            onValueChange = { doctorsContacts.value = it },
 
             // on below line we are adding place holder
-            // as text as "Enter your course description"
-            placeholder = { Text(text = "Enter your course author") },
+            // as text as "Enter your Contacts"
+            placeholder = { Text(text = "Enter your contacts") },
+
+            // on below line we are adding modifier to it
+            // and adding padding to it and filling max width
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+
+            // on below line we are adding text style
+            // specifying color and font size to it.
+            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
+
+            // on below line we are adding
+            // single line to it.
+            singleLine = true,
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+
+        TextField(
+            // on below line we are specifying
+            // value for our course description text field.
+            value = consoltationCharges.value,
+
+            // on below line we are adding on
+            // value change for text field.
+            onValueChange = { consoltationCharges.value = it },
+
+            // on below line we are adding place holder
+            // as text as "Enter your Contacts"
+            placeholder = { Text(text = "Enter your consoltation charges") },
 
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
@@ -236,37 +266,42 @@ fun firebaseUI(context: Context) {
         // add data to firebase firestore database.
 
         // on below line we are validating user input parameters.
-        if (TextUtils.isEmpty(courseName.value.toString())) {
-            Toast.makeText(context, "Please enter course name", Toast.LENGTH_SHORT).show()
-        } else if (TextUtils.isEmpty(courseDuration.value.toString())) {
-            Toast.makeText(context, "Please enter course Duration", Toast.LENGTH_SHORT)
+        if (TextUtils.isEmpty(doctorsName.value.toString())) {
+            Toast.makeText(context, "Please enter your name", Toast.LENGTH_SHORT).show()
+        } else if (TextUtils.isEmpty(doctorsLocation.value.toString())) {
+            Toast.makeText(context, "Please enter your location", Toast.LENGTH_SHORT)
                 .show()
-        } else if (TextUtils.isEmpty(courseDescription.value.toString())) {
-            Toast.makeText(context, "Please enter course description", Toast.LENGTH_SHORT)
+        } else if (TextUtils.isEmpty(doctorsSpecialisation.value.toString())) {
+            Toast.makeText(context, "Please enter your specialisation", Toast.LENGTH_SHORT)
                 .show()
-        } else if (TextUtils.isEmpty(courseAuthor.value.toString())) {
-            Toast.makeText(context, "Please enter course Author", Toast.LENGTH_SHORT)
+        } else if (TextUtils.isEmpty(doctorsContacts.value.toString())) {
+            Toast.makeText(context, "Please enter your contacts", Toast.LENGTH_SHORT)
                 .show()
-        }  else {
+        } else if (TextUtils.isEmpty(consoltationCharges.value.toString())) {
+            Toast.makeText(context, "Please enter your consoltation charges", Toast.LENGTH_SHORT)
+                .show()
+        }else {
             // Print a debug message before calling updateToFirebase.
             println("Calling updateToFirebase")
 
             // Call the updateToFirebase function.
             updateToFirebase(
-                courseName.value,
-                courseDuration.value,
-                courseDescription.value,
-                courseAuthor.value
+               doctorsName.value,
+                doctorsLocation.value,
+               doctorsSpecialisation.value,
+                doctorsContacts.value,
+                consoltationCharges.value
             )
         }
     }
 }
 
 fun updateToFirebase(
-    courseName: String,
-    courseDuration: String,
-    courseDescription: String,
-    courseAuthor: String
+    doctorsName: String,
+    doctorsLocation: String,
+    doctorsSpecialisation: String,
+    doctorsContacts: String,
+    consoltationCharges: String
 ) {
     // Print a debug message to check if this function is called.
     println("updateToFirebase Called")
@@ -276,10 +311,11 @@ fun updateToFirebase(
 
     // Create a map with updated data.
     val updatedData = mapOf(
-        "courseName" to courseName,
-        "courseDescription" to courseDescription,
-        "courseDuration" to courseDuration,
-        "courseAuthor" to courseAuthor
+        "doctorsName" to doctorsName,
+        "doctorsLocation" to doctorsLocation,
+        "doctorsSpecialisation" to doctorsSpecialisation,
+        "doctorsContacts" to doctorsContacts,
+        " consoltationCharges" to  consoltationCharges
     )
 
     // Print the updatedData for debugging.
@@ -298,33 +334,3 @@ fun updateToFirebase(
     // adding modifier to our button.
 
 
-fun updateToFirebase(
-    courseName: String,
-    courseDuration: String,
-    courseDescription: String,
-    courseAuthor: String,
-    courseId: Context,
-    context: Context
-) {
-    val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-    val dbCourses: CollectionReference = db.collection("Courses/$courseId")
-
-// Create a map with updated data.
-    val updatedData = mapOf(
-        "courseName" to courseName,
-        "courseDescription" to courseDescription,
-        "courseDuration" to courseDuration,
-        "courseAuthor" to courseAuthor
-    )
-
-    // Print the updatedData for debugging.
-    println("Updated Data: $updatedData")
-
-    // Add your logic to update Firestore here
-    // Make sure to generate a unique document ID or use an existing one.
-
-    // Example:
-    // dbCourses.add(updatedData)
-    //   .addOnSuccessListener { /* Handle success */ }
-    //   .addOnFailureListener { e -> /* Handle failure */ }
-}

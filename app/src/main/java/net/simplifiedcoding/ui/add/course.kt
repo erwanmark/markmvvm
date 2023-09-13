@@ -78,24 +78,30 @@ fun AddScreen(viewModel: AuthViewModel?, navController: NavController){
 
 }
 
+
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun firebaseUI(context: Context) {
 
     // on below line creating variable for course name,
     // course duration and course description.
-    val courseName = remember {
+    val doctorsName = remember {
         mutableStateOf("")
     }
 
-    val courseDuration = remember {
+    val doctorsLocation = remember {
         mutableStateOf("")
     }
 
-    val courseDescription = remember {
+    val doctorsSpecialisation = remember {
         mutableStateOf("")
     }
-    val courseAuthor = remember {
+    val doctorsContacts = remember {
+        mutableStateOf("")
+    }
+    val consoltationCharges = remember {
         mutableStateOf("")
     }
 
@@ -116,15 +122,15 @@ fun firebaseUI(context: Context) {
         TextField(
             // on below line we are specifying
             // value for our course name text field.
-            value = courseName.value,
+            value = doctorsName.value,
 
             // on below line we are adding on
             // value change for text field.
-            onValueChange = { courseName.value = it },
+            onValueChange = {  doctorsName.value = it },
 
             // on below line we are adding place holder
-            // as text as "Enter your course name"
-            placeholder = { Text(text = "Enter your course name") },
+            // as text as "Enter your name"
+            placeholder = { Text(text = "Enter your name") },
 
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
@@ -146,15 +152,15 @@ fun firebaseUI(context: Context) {
         TextField(
             // on below line we are specifying
             // value for our course duration text field.
-            value = courseDuration.value,
+            value = doctorsLocation.value,
 
             // on below line we are adding on
             // value change for text field.
-            onValueChange = { courseDuration.value = it },
+            onValueChange = { doctorsLocation.value = it },
 
             // on below line we are adding place holder
-            // as text as "Enter your course duration"
-            placeholder = { Text(text = "Enter your course duration") },
+            // as text as "Enter your location"
+            placeholder = { Text(text = "Enter your location") },
 
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
@@ -176,15 +182,15 @@ fun firebaseUI(context: Context) {
         TextField(
             // on below line we are specifying
             // value for our course description text field.
-            value = courseDescription.value,
+            value = doctorsSpecialisation.value,
 
             // on below line we are adding on
             // value change for text field.
-            onValueChange = { courseDescription.value = it },
+            onValueChange = { doctorsSpecialisation.value = it },
 
             // on below line we are adding place holder
-            // as text as "Enter your course description"
-            placeholder = { Text(text = "Enter your course description") },
+            // as text as "Enter your proffession"
+            placeholder = { Text(text = "Enter your specialisation") },
 
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
@@ -206,15 +212,44 @@ fun firebaseUI(context: Context) {
         TextField(
             // on below line we are specifying
             // value for our course description text field.
-            value = courseAuthor.value,
+            value = doctorsContacts.value,
 
             // on below line we are adding on
             // value change for text field.
-            onValueChange = { courseAuthor.value = it },
+            onValueChange = { doctorsContacts.value = it },
 
             // on below line we are adding place holder
-            // as text as "Enter your course description"
-            placeholder = { Text(text = "Enter your course author") },
+            // as text as "Enter your Contacts"
+            placeholder = { Text(text = "Enter your contacts") },
+
+            // on below line we are adding modifier to it
+            // and adding padding to it and filling max width
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+
+            // on below line we are adding text style
+            // specifying color and font size to it.
+            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
+
+            // on below line we are adding
+            // single line to it.
+            singleLine = true,
+        )
+        Spacer(modifier = Modifier.height(10.dp))
+
+        TextField(
+            // on below line we are specifying
+            // value for our course description text field.
+            value = consoltationCharges.value,
+
+            // on below line we are adding on
+            // value change for text field.
+            onValueChange = { consoltationCharges.value = it },
+
+            // on below line we are adding place holder
+            // as text as "Enter your Contacts"
+            placeholder = { Text(text = "Enter your consoltation charges") },
 
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
@@ -233,43 +268,69 @@ fun firebaseUI(context: Context) {
 
         // on below line creating button to
         // add data to firebase firestore database.
-
+        Button(
+            onClick = {
                 // on below line we are validating user input parameters.
-                if (TextUtils.isEmpty(courseName.value.toString())) {
-                    Toast.makeText(context, "Please enter course name", Toast.LENGTH_SHORT).show()
-                } else if (TextUtils.isEmpty(courseDuration.value.toString())) {
-                    Toast.makeText(context, "Please enter course Duration", Toast.LENGTH_SHORT)
+                if (TextUtils.isEmpty(doctorsName.value.toString())) {
+                    Toast.makeText(context, "Please enter  doctors Name", Toast.LENGTH_SHORT).show()
+                } else if (TextUtils.isEmpty(doctorsLocation.value.toString())) {
+                    Toast.makeText(context, "Please enter doctors Location", Toast.LENGTH_SHORT)
                         .show()
-                } else if (TextUtils.isEmpty(courseDescription.value.toString())) {
-                    Toast.makeText(context, "Please enter course description", Toast.LENGTH_SHORT)
+                } else if (TextUtils.isEmpty(doctorsSpecialisation.value.toString())) {
+                    Toast.makeText(context, "Please enter doctors Specialisation", Toast.LENGTH_SHORT)
                         .show()
-                } else if (TextUtils.isEmpty(courseAuthor.value.toString())) {
-                        Toast.makeText(context, "Please enter course Author", Toast.LENGTH_SHORT)
-                            .show()
+                } else if (TextUtils.isEmpty(doctorsContacts.value.toString())) {
+                    Toast.makeText(context, "Please enter the doctors Contacts", Toast.LENGTH_SHORT)
+                        .show()
+                } else if (TextUtils.isEmpty(consoltationCharges.value.toString())) {
+                    Toast.makeText(context, "Please enter consoltation Charges", Toast.LENGTH_SHORT)
+                        .show()
                 } else {
                     // on below line adding data to
                     // firebase firestore database.
                     addDataToFirebase(
-                        courseName.value,
-                        courseDuration.value,
-                        courseDescription.value,
-                        courseAuthor.value, context
+                        doctorsName.value,
+                        doctorsLocation.value,
+                        doctorsSpecialisation.value,
+                        doctorsContacts.value,
+                        consoltationCharges.value, context
 
                     )
                 }
-            }
+            },
             // on below line we are
             // adding modifier to our button.
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            // on below line we are adding text for our button
+            Text(text = "Add Data", modifier = Modifier.padding(8.dp))
+        }
 
+        Spacer(modifier = Modifier.height(5.dp))
+        //another button
 
+        var viewdata = LocalContext.current
+        Button(
+            onClick = {  },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+
+        ) {
+
+            Text(text = "View Data", fontSize = 20.sp)
+        }
     }
-
+}
 
 fun addDataToFirebase(
-    courseName: String,
-    courseDuration: String,
-    courseDescription: String,
-    courseAuthor: String,
+    doctorsName: String,
+    doctorsLocation: String,
+    doctorsSpecialisation: String,
+    doctorsContacts: String,
+    consoltationCharges: String,
     context: Context
 ) {
     // on below line creating an instance of firebase firestore.
@@ -277,7 +338,7 @@ fun addDataToFirebase(
     //creating a collection reference for our Firebase Firestore database.
     val dbCourses: CollectionReference = db.collection("Courses")
     //adding our data to our courses object class.
-    val courses = Course(courseName, courseDescription, courseDuration, courseAuthor)
+    val courses = Course(doctorsName, doctorsLocation, doctorsSpecialisation, doctorsContacts,consoltationCharges)
 
     //below method is use to add data to Firebase Firestore.
     dbCourses.add(courses).addOnSuccessListener {
@@ -285,17 +346,18 @@ fun addDataToFirebase(
         // we are displaying a success toast message.
         Toast.makeText(
             context,
-            "Your Course has been added to Firebase Firestore",
+            "Your account has been added to Firebase Firestore",
             Toast.LENGTH_SHORT
         ).show()
 
     }.addOnFailureListener { e ->
         // this method is called when the data addition process is failed.
         // displaying a toast message when data addition is failed.
-        Toast.makeText(context, "Fail to add course \n$e", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Fail to add account \n$e", Toast.LENGTH_SHORT).show()
     }
 
 }
+
 
 
 
