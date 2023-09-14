@@ -10,4 +10,5 @@ data class Course(
     var doctorsSpecialisation: String? = "",
     val doctorsContacts: String = "",
     var consoltationCharges: String? = "",
+    var regestrationNumber: String? = "",
 )

@@ -191,10 +191,4 @@ fun LoginScreenPreviewLight() {
     }
 }
 
-@Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun LoginScreenPreviewDark() {
-    AppTheme {
-        LoginScreen(null, rememberNavController())
-    }
-}
+

@@ -100,6 +100,9 @@ fun firebaseUI(context: Context) {
     val consoltationCharges = remember {
         mutableStateOf("")
     }
+    val regestrationNumber = remember {
+        mutableStateOf("")
+    }
 
     // on below line creating a column
     // to display our retrieved image view.
@@ -261,7 +264,35 @@ fun firebaseUI(context: Context) {
             // single line to it.
             singleLine = true,
         )
+        Spacer(modifier = Modifier.height(10.dp))
 
+        TextField(
+            // on below line we are specifying
+            // value for our course description text field.
+            value = regestrationNumber.value,
+
+            // on below line we are adding on
+            // value change for text field.
+            onValueChange = { regestrationNumber.value = it },
+
+            // on below line we are adding place holder
+            // as text as "Enter your Contacts"
+            placeholder = { Text(text = "Enter your regestration Numbers") },
+
+            // on below line we are adding modifier to it
+            // and adding padding to it and filling max width
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
+
+            // on below line we are adding text style
+            // specifying color and font size to it.
+            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
+
+            // on below line we are adding
+            // single line to it.
+            singleLine = true,
+        )
         // on below line creating button to
         // add data to firebase firestore database.
 
@@ -280,7 +311,10 @@ fun firebaseUI(context: Context) {
         } else if (TextUtils.isEmpty(consoltationCharges.value.toString())) {
             Toast.makeText(context, "Please enter your consoltation charges", Toast.LENGTH_SHORT)
                 .show()
-        }else {
+        }else if (TextUtils.isEmpty(regestrationNumber.value.toString())) {
+            Toast.makeText(context, "Please enter regestration Numbers", Toast.LENGTH_SHORT)
+                .show()
+        } else {
             // Print a debug message before calling updateToFirebase.
             println("Calling updateToFirebase")
 
@@ -290,7 +324,8 @@ fun firebaseUI(context: Context) {
                 doctorsLocation.value,
                doctorsSpecialisation.value,
                 doctorsContacts.value,
-                consoltationCharges.value
+                consoltationCharges.value,
+                regestrationNumber.value
             )
         }
     }
@@ -301,7 +336,8 @@ fun updateToFirebase(
     doctorsLocation: String,
     doctorsSpecialisation: String,
     doctorsContacts: String,
-    consoltationCharges: String
+    consoltationCharges: String,
+    regestrationNumber: String,
 ) {
     // Print a debug message to check if this function is called.
     println("updateToFirebase Called")
@@ -315,7 +351,8 @@ fun updateToFirebase(
         "doctorsLocation" to doctorsLocation,
         "doctorsSpecialisation" to doctorsSpecialisation,
         "doctorsContacts" to doctorsContacts,
-        " consoltationCharges" to  consoltationCharges
+        " consoltationCharges" to  consoltationCharges,
+        " regestrationNumber" to  regestrationNumber
     )
 
     // Print the updatedData for debugging.

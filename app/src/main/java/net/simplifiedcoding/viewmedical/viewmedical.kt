@@ -172,7 +172,7 @@ fun firebaseUI(context: Context, courseList: SnapshotStateList<Courses>) {
                         // on below line inside row we are adding spacer
                         Spacer(modifier = Modifier.width(5.dp))
                         // on below line we are displaying course name.
-                        courseList[index]?.doctorsName?.let {
+                        courseList[index]?.doctorsLocation?.let {
                             Text(
                                 // inside the text on below line we are
                                 // setting text as the language name
@@ -196,7 +196,7 @@ fun firebaseUI(context: Context, courseList: SnapshotStateList<Courses>) {
                         Spacer(modifier = Modifier.height(5.dp))
 
                         // on below line displaying text for course duration
-                        courseList[index]?.doctorsLocation?.let {
+                        courseList[index]?.doctorsSpecialisation?.let {
                             Text(
                                 // inside the text on below line we are
                                 // setting text as the language name
@@ -220,7 +220,39 @@ fun firebaseUI(context: Context, courseList: SnapshotStateList<Courses>) {
 
 
                         // on below line displaying text for course description
-                        courseList[index]?.doctorsLocation?.let {
+                        courseList[index]?.doctorsContacts?.let {
+                            Text(
+                                // inside the text on below line we are
+                                // setting text as the language name
+                                // from our modal class.
+                                text = it,
+
+                                // on below line we are adding padding
+                                // for our text from all sides.
+                                modifier = Modifier.padding(4.dp),
+                                // on below line we are adding color for our text
+                                color = Color.Black,
+                                textAlign = TextAlign.Center,
+                                style = TextStyle(fontSize = 15.sp)
+                            )
+                        }
+                        courseList[index]?.consoltationCharges?.let {
+                            Text(
+                                // inside the text on below line we are
+                                // setting text as the language name
+                                // from our modal class.
+                                text = it,
+
+                                // on below line we are adding padding
+                                // for our text from all sides.
+                                modifier = Modifier.padding(4.dp),
+                                // on below line we are adding color for our text
+                                color = Color.Black,
+                                textAlign = TextAlign.Center,
+                                style = TextStyle(fontSize = 15.sp)
+                            )
+                        }
+                        courseList[index]?.consoltationCharges?.let {
                             Text(
                                 // inside the text on below line we are
                                 // setting text as the language name
@@ -237,9 +269,9 @@ fun firebaseUI(context: Context, courseList: SnapshotStateList<Courses>) {
                             )
                         }
                     }
+
                 }
             }
-
         }
     }
 }
