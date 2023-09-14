@@ -273,7 +273,27 @@ import net.simplifiedcoding.ui.auth.AuthViewModel
                                     style = TextStyle(fontSize = 15.sp)
                                 )
                             }
+                            // adding spacer on below line.
+                            Spacer(modifier = Modifier.width(5.dp))
 
+                            // on below line displaying text for course description
+                            medicalList[index]?.regestrationNumber?.let {
+                                Text(
+                                    // inside the text on below line we are
+                                    // setting text as the language name
+                                    // from our modal class.
+                                    text = it,
+
+                                    // on below line we are adding padding
+                                    // for our text from all sides.
+                                    modifier = Modifier.padding(4.dp),
+
+                                    // on below line we are adding color for our text
+                                    color = Color.Black,
+                                    textAlign = TextAlign.Center,
+                                    style = TextStyle(fontSize = 15.sp)
+                                )
+                            }
                         }
                     }
                 }
