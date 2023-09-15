@@ -49,31 +49,7 @@ fun viewmedicalScreen(viewModel: AuthViewModel?, navController: NavHostControlle
         // the theme as the scaffold.
         Scaffold(
             // in scaffold we are specifying the top bar.
-            topBar = {
-                // inside top bar we are specifying
-                // background color.
-                SmallTopAppBar(
-                    // along with that we are
-                    // specifying title for our top bar.
-                    title = {
-                        // in the top bar we are specifying
-                        // tile as a text
-                        Text(
-                            // on below line we are specifying
-                            // text to display in top app bar
-                            text = "Displaying Course Content",
-                            // on below line we are specifying
-                            // modifier to fill max width
-                            modifier = Modifier.fillMaxWidth(),
-                            // on below line we are specifying
-                            // text alignment
-                            textAlign = TextAlign.Center,
-                            // on below line we are specifying
-                            // color for our text.
-                            color = Color.White
-                        )
-                    })
-            }) {
+            ) {
 
 
             //logic for retrieving data
