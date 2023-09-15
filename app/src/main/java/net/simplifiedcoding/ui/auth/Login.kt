@@ -3,15 +3,18 @@ package net.simplifiedcoding.ui.auth
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -50,14 +53,16 @@ fun LoginScreen(viewModel: AuthViewModel?, navController: NavController) {
         Box(
             modifier = Modifier
                 .constrainAs(refHeader) {
-                    top.linkTo(parent.top, spacing.extraLarge)
+                    top.linkTo(parent.top, spacing.large)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                     width = Dimension.fillToConstraints
                 }
                 .wrapContentSize()
         ) {
-            AuthHeader()
+           Image(painter = painterResource(id = R.drawable.logo), contentDescription =null,
+               modifier = Modifier.fillMaxWidth()
+               )
         }
 
 
@@ -70,7 +75,7 @@ fun LoginScreen(viewModel: AuthViewModel?, navController: NavController) {
                 Text(text = stringResource(id = R.string.email))
             },
             modifier = Modifier.constrainAs(refEmail) {
-                top.linkTo(refHeader.bottom, spacing.extraLarge)
+                top.linkTo(refHeader.bottom, spacing.large)
                 start.linkTo(parent.start, spacing.large)
                 end.linkTo(parent.end, spacing.large)
                 width = Dimension.fillToConstraints
@@ -112,8 +117,8 @@ fun LoginScreen(viewModel: AuthViewModel?, navController: NavController) {
             },
             modifier = Modifier.constrainAs(refButtonLogin) {
                 top.linkTo(refPassword.bottom, spacing.large)
-                start.linkTo(parent.start, spacing.extraLarge)
-                end.linkTo(parent.end, spacing.extraLarge)
+                start.linkTo(parent.start, spacing.large)
+                end.linkTo(parent.end, spacing.large)
                 width = Dimension.fillToConstraints
             }
         ) {
@@ -143,8 +148,8 @@ fun LoginScreen(viewModel: AuthViewModel?, navController: NavController) {
             modifier = Modifier
                 .constrainAs(refTextSignup) {
                     top.linkTo(refButtonLogin.bottom, spacing.medium)
-                    start.linkTo(parent.start, spacing.extraLarge)
-                    end.linkTo(parent.end, spacing.extraLarge)
+                    start.linkTo(parent.start, spacing.large)
+                    end.linkTo(parent.end, spacing.large)
                 }
                 .clickable {
                     navController.navigate(ROUTE_HOME) {
@@ -152,7 +157,7 @@ fun LoginScreen(viewModel: AuthViewModel?, navController: NavController) {
                     }
                 },
             text = "ADD ACCOUNT",
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.bodyMedium,
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onSurface
         )

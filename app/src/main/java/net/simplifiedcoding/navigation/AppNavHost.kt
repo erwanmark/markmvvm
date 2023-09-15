@@ -20,7 +20,7 @@ fun AppNavHost(
     viewModel: AuthViewModel,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUTE_ADDMEDICAL
+    startDestination: String = ROUTE_LOGIN
 ) {
     NavHost(
         modifier = modifier,

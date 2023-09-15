@@ -3,15 +3,18 @@ package net.simplifiedcoding.ui.auth
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -25,6 +28,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import net.simplifiedcoding.R
 import net.simplifiedcoding.data.Resource
+import net.simplifiedcoding.navigation.ROUTE_ADDMEDICAL
 import net.simplifiedcoding.navigation.ROUTE_HOME
 import net.simplifiedcoding.navigation.ROUTE_LOGIN
 import net.simplifiedcoding.navigation.ROUTE_SIGNUP
@@ -49,14 +53,17 @@ fun SignupScreen(viewModel: AuthViewModel?, navController: NavHostController) {
         Box(
             modifier = Modifier
                 .constrainAs(refHeader) {
-                    top.linkTo(parent.top, spacing.extraLarge)
+                    top.linkTo(parent.top, spacing.large)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                     width = Dimension.fillToConstraints
                 }
                 .wrapContentSize()
         ) {
-            AuthHeader()
+
+            Image(painter = painterResource(id = R.drawable.logo), contentDescription =null,
+                modifier = Modifier.fillMaxWidth()
+            )
         }
 
         TextField(
@@ -68,7 +75,7 @@ fun SignupScreen(viewModel: AuthViewModel?, navController: NavHostController) {
                 Text(text = stringResource(id = R.string.name))
             },
             modifier = Modifier.constrainAs(refName) {
-                top.linkTo(refHeader.bottom, spacing.extraLarge)
+                top.linkTo(refHeader.bottom, spacing.large)
                 start.linkTo(parent.start, spacing.large)
                 end.linkTo(parent.end, spacing.large)
                 width = Dimension.fillToConstraints
@@ -132,8 +139,8 @@ fun SignupScreen(viewModel: AuthViewModel?, navController: NavHostController) {
             },
             modifier = Modifier.constrainAs(refButtonSignup) {
                 top.linkTo(refPassword.bottom, spacing.large)
-                start.linkTo(parent.start, spacing.extraLarge)
-                end.linkTo(parent.end, spacing.extraLarge)
+                start.linkTo(parent.start, spacing.large)
+                end.linkTo(parent.end, spacing.large)
                 width = Dimension.fillToConstraints
             }
         ) {
@@ -145,8 +152,8 @@ fun SignupScreen(viewModel: AuthViewModel?, navController: NavHostController) {
             modifier = Modifier
                 .constrainAs(refTextSignup) {
                     top.linkTo(refButtonSignup.bottom, spacing.medium)
-                    start.linkTo(parent.start, spacing.extraLarge)
-                    end.linkTo(parent.end, spacing.extraLarge)
+                    start.linkTo(parent.start, spacing.large)
+                    end.linkTo(parent.end, spacing.large)
                 }
                 .clickable {
                     navController.navigate(ROUTE_LOGIN) {
@@ -154,7 +161,7 @@ fun SignupScreen(viewModel: AuthViewModel?, navController: NavHostController) {
                     }
                 },
             text = stringResource(id = R.string.already_have_account),
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.bodyMedium,
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onSurface
         )
@@ -175,7 +182,7 @@ fun SignupScreen(viewModel: AuthViewModel?, navController: NavHostController) {
                 }
                 is Resource.Success -> {
                     LaunchedEffect(Unit) {
-                        navController.navigate(ROUTE_HOME) {
+                        navController.navigate(ROUTE_ADDMEDICAL) {
                             popUpTo(ROUTE_SIGNUP) { inclusive = true }
                         }
                     }

@@ -28,7 +28,7 @@ fun AuthHeader() {
         Image(
             modifier = Modifier
                 .size(128.dp, 128.dp),
-            painter = painterResource(id = R.drawable.ic_app_logo),
+            painter = painterResource(id = R.drawable.logo),
             contentDescription = stringResource(id = R.string.app_name)
         )
 
@@ -45,13 +45,6 @@ fun AuthHeader() {
     }
 }
 
-@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Composable
-fun AppHeaderLight() {
-    AppTheme {
-        AuthHeader()
-    }
-}
 
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable

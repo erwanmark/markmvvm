@@ -141,7 +141,7 @@ import net.simplifiedcoding.ui.auth.AuthViewModel
             modifier = Modifier
                 .fillMaxHeight()
                 .fillMaxWidth()
-                .background(Color.White),
+                .background(Color.Black),
             // on below line adding vertical and
             // horizontal alignment for column.
             verticalArrangement = Arrangement.Top,
