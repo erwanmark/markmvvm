@@ -111,19 +111,19 @@ fun firebaseUI(context: Context) {
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
             modifier = Modifier
-                .padding(16.dp)
+                .padding(10.dp)
                 .fillMaxWidth(),
 
             // on below line we are adding text style
             // specifying color and font size to it.
-            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
+            textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
 
             // on below line we are adding
             // single line to it.
             singleLine = true,
         )
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(2.dp))
 
         TextField(
             // on below line we are specifying
@@ -141,19 +141,19 @@ fun firebaseUI(context: Context) {
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
             modifier = Modifier
-                .padding(16.dp)
+                .padding(10.dp)
                 .fillMaxWidth(),
 
             // on below line we are adding text style
             // specifying color and font size to it.
-            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
+            textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
 
             // on below line we are adding
             // single line to it.
             singleLine = true,
         )
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(2.dp))
 
         TextField(
             // on below line we are specifying
@@ -171,19 +171,19 @@ fun firebaseUI(context: Context) {
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
             modifier = Modifier
-                .padding(16.dp)
+                .padding(10.dp)
                 .fillMaxWidth(),
 
             // on below line we are adding text style
             // specifying color and font size to it.
-            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
+            textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
 
             // on below line we are adding
             // single line to it.
             singleLine = true,
         )
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(2.dp))
 
         TextField(
             // on below line we are specifying
@@ -201,18 +201,18 @@ fun firebaseUI(context: Context) {
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
             modifier = Modifier
-                .padding(16.dp)
+                .padding(10.dp)
                 .fillMaxWidth(),
 
             // on below line we are adding text style
             // specifying color and font size to it.
-            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
+            textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
 
             // on below line we are adding
             // single line to it.
             singleLine = true,
         )
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(2.dp))
 
         TextField(
             // on below line we are specifying
@@ -230,18 +230,18 @@ fun firebaseUI(context: Context) {
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
             modifier = Modifier
-                .padding(16.dp)
+                .padding(10.dp)
                 .fillMaxWidth(),
 
             // on below line we are adding text style
             // specifying color and font size to it.
-            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
+            textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
 
             // on below line we are adding
             // single line to it.
             singleLine = true,
         )
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(2.dp))
 
         TextField(
             // on below line we are specifying
@@ -259,12 +259,12 @@ fun firebaseUI(context: Context) {
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
             modifier = Modifier
-                .padding(16.dp)
+                .padding(10.dp)
                 .fillMaxWidth(),
 
             // on below line we are adding text style
             // specifying color and font size to it.
-            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
+            textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
 
             // on below line we are adding
             // single line to it.

@@ -1,4 +1,4 @@
-package net.simplifiedcoding.ui.courses
+package net.simplifiedcoding.ui.medical
 
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -6,7 +6,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SmallTopAppBar
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import net.simplifiedcoding.Courses
+import net.simplifiedcoding.Medical
 
 
 import android.annotation.SuppressLint
@@ -75,7 +75,7 @@ import net.simplifiedcoding.ui.auth.AuthViewModel
                 }) {
 
                 // on below line creating variable for list of data.
-                var medicalList = mutableStateListOf<Courses?>()
+                var medicalList = mutableStateListOf<Medical?>()
                 // on below line creating variable for freebase database
                 // and database reference.
                 var db: FirebaseFirestore = FirebaseFirestore.getInstance()
@@ -96,7 +96,7 @@ import net.simplifiedcoding.ui.auth.AuthViewModel
                             for (d in list) {
                                 // after getting this list we are passing that
                                 // list to our object class.
-                                val c: Courses? = d.toObject(Courses::class.java)
+                                val c: Medical? = d.toObject(Medical::class.java)
                                 // and we will pass this object class inside
                                 // our arraylist which we have created for list view.
                                 medicalList.add(c)
@@ -132,7 +132,7 @@ import net.simplifiedcoding.ui.auth.AuthViewModel
 
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun firebaseUI(context: Context, medicalList: SnapshotStateList<Courses?>) {
+    fun firebaseUI(context: Context, medicalList: SnapshotStateList<Medical?>) {
 
         // on below line creating a column
         // to display our retrieved list.

@@ -32,6 +32,7 @@ import net.simplifiedcoding.navigation.ROUTE_ADDMEDICAL
 import net.simplifiedcoding.navigation.ROUTE_HOME
 import net.simplifiedcoding.navigation.ROUTE_LOGIN
 import net.simplifiedcoding.navigation.ROUTE_SIGNUP
+import net.simplifiedcoding.navigation.ROUTE_VIEWMEDICAL
 import net.simplifiedcoding.ui.theme.AppTheme
 import net.simplifiedcoding.ui.theme.spacing
 
@@ -178,7 +179,7 @@ fun LoginScreen(viewModel: AuthViewModel?, navController: NavController) {
                 }
                 is Resource.Success -> {
                     LaunchedEffect(Unit) {
-                        navController.navigate(ROUTE_ADDMEDICAL) {
+                        navController.navigate(ROUTE_VIEWMEDICAL) {
                             popUpTo(ROUTE_LOGIN) { inclusive = true }
                         }
                     }

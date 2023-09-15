@@ -9,6 +9,7 @@ import android.content.Context
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material3.Button
@@ -19,6 +20,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -31,7 +33,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import net.simplifiedcoding.Course
+import net.simplifiedcoding.Medical
+import net.simplifiedcoding.data.Resource
+import net.simplifiedcoding.navigation.ROUTE_ADDMEDICAL
+import net.simplifiedcoding.navigation.ROUTE_HOME
+import net.simplifiedcoding.navigation.ROUTE_SIGNUP
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -46,30 +52,7 @@ fun AddScreen(viewModel: AuthViewModel?, navController: NavController){
         // on the below line we are specifying the theme as the scaffold.
         Scaffold(
             // in scaffold we are specifying the top bar.
-            topBar = {
-                // inside top bar we are specifying background color.
-                SmallTopAppBar(
-                    // along with that we are specifying
-                    // title for our top bar.
-                    title = {
-                        // in the top bar we are
-                        // specifying tile as a text
-                        Text(
-                            // on below line we are specifying
-                            // text to display in top app bar
-                            text = "GFG",
-                            // on below line we are specifying
-                            // modifier to fill max width
-                            modifier = Modifier.fillMaxWidth(),
-                            // on below line we are
-                            // specifying text alignment
-                            textAlign = TextAlign.Center,
-                            // on below line we are specifying
-                            // color for our text.
-                            color = Color.White
-                        )
-                    })
-            }) {
+            ) {
             // on below line we are calling
             // method to display UI
             firebaseUI(LocalContext.current)
@@ -77,8 +60,6 @@ fun AddScreen(viewModel: AuthViewModel?, navController: NavController){
     }
 
 }
-
-
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -138,19 +119,19 @@ fun firebaseUI(context: Context) {
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
             modifier = Modifier
-                .padding(16.dp)
+                .padding(10.dp)
                 .fillMaxWidth(),
 
             // on below line we are adding text style
             // specifying color and font size to it.
-            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
+            textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
 
             // on below line we are adding
             // single line to it.
             singleLine = true,
         )
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(2.dp))
 
         TextField(
             // on below line we are specifying
@@ -168,19 +149,19 @@ fun firebaseUI(context: Context) {
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
             modifier = Modifier
-                .padding(16.dp)
+                .padding(10.dp)
                 .fillMaxWidth(),
 
             // on below line we are adding text style
             // specifying color and font size to it.
-            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
+            textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
 
             // on below line we are adding
             // single line to it.
             singleLine = true,
         )
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(2.dp))
 
         TextField(
             // on below line we are specifying
@@ -198,19 +179,19 @@ fun firebaseUI(context: Context) {
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
             modifier = Modifier
-                .padding(16.dp)
+                .padding(10.dp)
                 .fillMaxWidth(),
 
             // on below line we are adding text style
             // specifying color and font size to it.
-            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
+            textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
 
             // on below line we are adding
             // single line to it.
             singleLine = true,
         )
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(2.dp))
 
         TextField(
             // on below line we are specifying
@@ -228,18 +209,18 @@ fun firebaseUI(context: Context) {
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
             modifier = Modifier
-                .padding(16.dp)
+                .padding(10.dp)
                 .fillMaxWidth(),
 
             // on below line we are adding text style
             // specifying color and font size to it.
-            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
+            textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
 
             // on below line we are adding
             // single line to it.
             singleLine = true,
         )
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(2.dp))
 
         TextField(
             // on below line we are specifying
@@ -257,18 +238,18 @@ fun firebaseUI(context: Context) {
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
             modifier = Modifier
-                .padding(16.dp)
+                .padding(10.dp)
                 .fillMaxWidth(),
 
             // on below line we are adding text style
             // specifying color and font size to it.
-            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
+            textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
 
             // on below line we are adding
             // single line to it.
             singleLine = true,
         )
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(2.dp))
 
         TextField(
             // on below line we are specifying
@@ -286,18 +267,17 @@ fun firebaseUI(context: Context) {
             // on below line we are adding modifier to it
             // and adding padding to it and filling max width
             modifier = Modifier
-                .padding(16.dp)
+                .padding(10.dp)
                 .fillMaxWidth(),
 
             // on below line we are adding text style
             // specifying color and font size to it.
-            textStyle = TextStyle(color = Color.Black, fontSize = 15.sp),
+            textStyle = TextStyle(color = Color.Black, fontSize = 20.sp),
 
             // on below line we are adding
             // single line to it.
             singleLine = true,
         )
-
         // on below line creating button to
         // add data to firebase firestore database.
         Button(
@@ -337,26 +317,14 @@ fun firebaseUI(context: Context) {
             // adding modifier to our button.
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(10.dp)
         ) {
             // on below line we are adding text for our button
-            Text(text = "Add Data", modifier = Modifier.padding(8.dp))
+            Text(text = "Add Data", modifier = Modifier.padding(10.dp))
         }
-
-        Spacer(modifier = Modifier.height(5.dp))
+        Spacer(modifier = Modifier.height(2.dp))
         //another button
 
-        var viewdata = LocalContext.current
-        Button(
-            onClick = {  },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-
-        ) {
-
-            Text(text = "View Data", fontSize = 20.sp)
-        }
     }
 }
 
@@ -374,7 +342,7 @@ fun addDataToFirebase(
     //creating a collection reference for our Firebase Firestore database.
     val dbCourses: CollectionReference = db.collection("Courses")
     //adding our data to our courses object class.
-    val courses = Course(doctorsName, doctorsLocation, doctorsSpecialisation, doctorsContacts,consoltationCharges,regestrationNumber)
+    val courses = Medical(doctorsName, doctorsLocation, doctorsSpecialisation, doctorsContacts,consoltationCharges,regestrationNumber)
 
     //below method is use to add data to Firebase Firestore.
     dbCourses.add(courses).addOnSuccessListener {

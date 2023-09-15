@@ -8,6 +8,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
@@ -22,6 +23,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.navigation.NavHostController
@@ -32,6 +35,7 @@ import net.simplifiedcoding.navigation.ROUTE_ADDMEDICAL
 import net.simplifiedcoding.navigation.ROUTE_HOME
 import net.simplifiedcoding.navigation.ROUTE_LOGIN
 import net.simplifiedcoding.navigation.ROUTE_SIGNUP
+import net.simplifiedcoding.navigation.ROUTE_VIEWMEDICAL
 import net.simplifiedcoding.ui.theme.AppTheme
 import net.simplifiedcoding.ui.theme.spacing
 
@@ -160,6 +164,7 @@ fun SignupScreen(viewModel: AuthViewModel?, navController: NavHostController) {
                         popUpTo(ROUTE_SIGNUP) { inclusive = true }
                     }
                 },
+
             text = stringResource(id = R.string.already_have_account),
             style = MaterialTheme.typography.bodyMedium,
             textAlign = TextAlign.Center,
@@ -182,11 +187,13 @@ fun SignupScreen(viewModel: AuthViewModel?, navController: NavHostController) {
                 }
                 is Resource.Success -> {
                     LaunchedEffect(Unit) {
-                        navController.navigate(ROUTE_ADDMEDICAL) {
+                        navController.navigate(ROUTE_VIEWMEDICAL) {
                             popUpTo(ROUTE_SIGNUP) { inclusive = true }
                         }
                     }
                 }
+
+
             }
         }
 
