@@ -11,6 +11,7 @@ import net.simplifiedcoding.ui.auth.AuthViewModel
 import net.simplifiedcoding.ui.auth.LoginScreen
 import net.simplifiedcoding.ui.auth.SignupScreen
 import net.simplifiedcoding.ui.home.HomeScreen
+import net.simplifiedcoding.ui.landingpage.LandingScreen
 import net.simplifiedcoding.ui.updatemedical.updatemedicalScreen
 import net.simplifiedcoding.viewmedical.viewmedicalScreen
 import net.simplifiedcoding.viewmedical.viewmedicalScreen
@@ -47,6 +48,9 @@ fun AppNavHost(
 
         composable(ROUTE_UPDATEMEDICAL) {
             updatemedicalScreen(viewModel, navController)
+        }
+        composable(ROUTE_LANDINGPAGE) {
+            LandingScreen(viewModel, navController)
         }
 
 

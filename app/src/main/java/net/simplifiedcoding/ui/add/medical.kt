@@ -46,6 +46,7 @@ import net.simplifiedcoding.navigation.ROUTE_SIGNUP
 fun AddScreen(viewModel: AuthViewModel?, navController: NavController){
 
     Surface(
+
         // on below line we are specifying modifier and color for our app
         modifier = Modifier.fillMaxSize(),
     ) {

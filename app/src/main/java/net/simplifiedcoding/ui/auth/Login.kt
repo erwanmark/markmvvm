@@ -30,6 +30,7 @@ import net.simplifiedcoding.R
 import net.simplifiedcoding.data.Resource
 import net.simplifiedcoding.navigation.ROUTE_ADDMEDICAL
 import net.simplifiedcoding.navigation.ROUTE_HOME
+import net.simplifiedcoding.navigation.ROUTE_LANDINGPAGE
 import net.simplifiedcoding.navigation.ROUTE_LOGIN
 import net.simplifiedcoding.navigation.ROUTE_SIGNUP
 import net.simplifiedcoding.navigation.ROUTE_VIEWMEDICAL
@@ -153,7 +154,7 @@ fun LoginScreen(viewModel: AuthViewModel?, navController: NavController) {
                     end.linkTo(parent.end, spacing.large)
                 }
                 .clickable {
-                    navController.navigate(ROUTE_HOME) {
+                    navController.navigate(ROUTE_SIGNUP) {
                         popUpTo(ROUTE_HOME) { inclusive = true }
                     }
                 },
@@ -179,7 +180,7 @@ fun LoginScreen(viewModel: AuthViewModel?, navController: NavController) {
                 }
                 is Resource.Success -> {
                     LaunchedEffect(Unit) {
-                        navController.navigate(ROUTE_VIEWMEDICAL) {
+                        navController.navigate(ROUTE_LANDINGPAGE) {//next page
                             popUpTo(ROUTE_LOGIN) { inclusive = true }
                         }
                     }

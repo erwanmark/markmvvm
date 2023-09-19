@@ -33,6 +33,7 @@ import net.simplifiedcoding.R
 import net.simplifiedcoding.data.Resource
 import net.simplifiedcoding.navigation.ROUTE_ADDMEDICAL
 import net.simplifiedcoding.navigation.ROUTE_HOME
+import net.simplifiedcoding.navigation.ROUTE_LANDINGPAGE
 import net.simplifiedcoding.navigation.ROUTE_LOGIN
 import net.simplifiedcoding.navigation.ROUTE_SIGNUP
 import net.simplifiedcoding.navigation.ROUTE_VIEWMEDICAL
@@ -187,7 +188,7 @@ fun SignupScreen(viewModel: AuthViewModel?, navController: NavHostController) {
                 }
                 is Resource.Success -> {
                     LaunchedEffect(Unit) {
-                        navController.navigate(ROUTE_VIEWMEDICAL) {
+                        navController.navigate(ROUTE_SIGNUP) {
                             popUpTo(ROUTE_SIGNUP) { inclusive = true }
                         }
                     }
