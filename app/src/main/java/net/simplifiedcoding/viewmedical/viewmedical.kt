@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
+import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
@@ -29,8 +30,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.google.firebase.firestore.FirebaseFirestore
+import net.simplifiedcoding.navigation.ROUTE_LANDINGPAGE
 import net.simplifiedcoding.ui.auth.AuthViewModel
 
 
@@ -85,7 +88,7 @@ fun viewmedicalScreen(viewModel: AuthViewModel?, navController: NavHostControlle
                     //Toast.makeText(context, "", Toast.LENGTH_SHORT).show()
                 }
             //adding our user interface
-            firebaseUI(LocalContext.current, medicalList)
+            firebaseUI(LocalContext.current,  medicalList)
         }
     }
 }
@@ -143,7 +146,33 @@ fun firebaseUI(context: Context, courseList: SnapshotStateList<Medical>) {
                         modifier = Modifier
                             .padding(8.dp)
                             .fillMaxWidth()
+
                     ) {
+                        // on below line inside row we are adding spacer
+                        Spacer(modifier = Modifier.width(5.dp))
+                        // on below line we are displaying course name.
+                        courseList[index]?.doctorsName?.let {
+                            Text(
+                                // inside the text on below line we are
+                                // setting text as the language name
+                                // from our modal class.
+                                text = it,
+
+                                // on below line we are adding padding
+                                // for our text from all sides.
+                                modifier = Modifier.padding(4.dp),
+
+                                // on below line we are adding
+                                // color for our text
+
+                                textAlign = TextAlign.Center,
+                                style = TextStyle(
+                                    fontSize = 20.sp, fontWeight = FontWeight.Bold
+                                )
+                            )
+                        }
+                        // adding spacer on below line.
+                        Spacer(modifier = Modifier.height(5.dp))
                         // on below line inside row we are adding spacer
                         Spacer(modifier = Modifier.width(5.dp))
                         // on below line we are displaying course name.
@@ -243,6 +272,7 @@ fun firebaseUI(context: Context, courseList: SnapshotStateList<Medical>) {
                                 style = TextStyle(fontSize = 15.sp)
                             )
                         }
+
                     }
 
                 }

@@ -187,6 +187,32 @@ import net.simplifiedcoding.ui.auth.AuthViewModel
                             // on below line inside row we are adding spacer
                             Spacer(modifier = Modifier.width(5.dp))
                             // on below line we are displaying course name.
+                            medicalList[index]?.doctorsName
+                                ?.let {
+                                Text(
+                                    // inside the text on below line we are
+                                    // setting text as the language name
+                                    // from our modal class.
+                                    text = it,
+
+                                    // on below line we are adding padding
+                                    // for our text from all sides.
+                                    modifier = Modifier.padding(4.dp),
+
+                                    // on below line we are adding
+                                    // color for our text
+
+                                    textAlign = TextAlign.Center,
+                                    style = TextStyle(
+                                        fontSize = 20.sp, fontWeight = FontWeight.Bold
+                                    )
+                                )
+                            }
+                            // adding spacer on below line.
+                            Spacer(modifier = Modifier.height(5.dp))
+                            // on below line inside row we are adding spacer
+                            Spacer(modifier = Modifier.width(5.dp))
+                            // on below line we are displaying course name.
                             medicalList[index]?.doctorsLocation?.let {
                                 Text(
                                     // inside the text on below line we are

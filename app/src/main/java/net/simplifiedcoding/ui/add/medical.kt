@@ -37,6 +37,7 @@ import net.simplifiedcoding.Medical
 import net.simplifiedcoding.data.Resource
 import net.simplifiedcoding.navigation.ROUTE_ADDMEDICAL
 import net.simplifiedcoding.navigation.ROUTE_HOME
+import net.simplifiedcoding.navigation.ROUTE_LANDINGPAGE
 import net.simplifiedcoding.navigation.ROUTE_SIGNUP
 
 
@@ -56,7 +57,7 @@ fun AddScreen(viewModel: AuthViewModel?, navController: NavController){
             ) {
             // on below line we are calling
             // method to display UI
-            firebaseUI(LocalContext.current)
+            firebaseUI(LocalContext.current,navController)
         }
     }
 
@@ -65,7 +66,7 @@ fun AddScreen(viewModel: AuthViewModel?, navController: NavController){
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun firebaseUI(context: Context) {
+fun firebaseUI(context: Context, navController: NavController) {
 
     // on below line creating variable for course name,
     // course duration and course description.
@@ -325,7 +326,17 @@ fun firebaseUI(context: Context) {
         }
         Spacer(modifier = Modifier.height(2.dp))
         //another button
+        
+        Button(onClick = {
+            navController.navigate(ROUTE_LANDINGPAGE)
+        },
+           modifier = Modifier
+               .fillMaxWidth()
+               .padding(16.dp)
 
+        ){
+           Text(text = "Back") 
+        }
     }
 }
 

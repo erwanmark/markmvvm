@@ -57,10 +57,7 @@ fun LandingScreen(viewModel: AuthViewModel?, navController: NavController) {
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onSurface
         )
-
-
-
-
+        
         Text(
             modifier = Modifier
 
